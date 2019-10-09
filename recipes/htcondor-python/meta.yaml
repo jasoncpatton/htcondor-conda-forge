@@ -22,6 +22,8 @@ requirements:
     - make
     - pkg-config
     - boost
+    - libuuid
+    - openldap
   host:
     - {{ cdt('libselinux') }}  # [linux]
     - pcre
