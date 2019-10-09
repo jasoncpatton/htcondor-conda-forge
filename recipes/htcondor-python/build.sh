@@ -11,5 +11,9 @@ cmake $SRC_DIR \
        -DWITH_BLAHP:BOOL=OFF \
        -DWITH_CREAM:BOOL=OFF \
        -DWITH_BOINC:BOOL=OFF
-make python_bindings
+if [ "$PY3K" == "1" ]; then
+    make python3_bindings
+else
+    make python_bindings
+fi
 make install
