@@ -1,5 +1,5 @@
 {% set name = "htcondor" %}
-{% set package_name = "htcondor-python" %}
+{% set package_name = "python-htcondor" %}
 {% set version = "8.9.3" %}
 
 package:
