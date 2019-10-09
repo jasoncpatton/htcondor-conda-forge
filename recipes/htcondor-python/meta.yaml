@@ -1,0 +1,61 @@
+{% set name = "htcondor" %}
+{% set package_name = "htcondor-python" %}
+{% set version = "8.9.3" %}
+
+package:
+  name: {{ package_name|lower }}
+  version: {{ version }}
+
+source:
+  url: "https://github.com/{{ name }}/{{ name }}/archive/V{{ version|replace(".","_") }}.tar.gz"
+  sha256: 40c01d5284a610bc840c00ffaaf825a9b604e2f5ff4945390975d487c13782e8
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - make
+    - pkg-config
+    - boost
+  host:
+    - {{ cdt('libselinux') }}  # [linux]
+    - pcre
+    - voms
+    - gct
+    - libtool
+    - openssl
+    - krb5
+    - munge
+    - expat
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - htcondor
+    - classad
+
+about:
+  home: http://htcondor.org/
+  license: Apache-2.0
+  license_file: LICENSE-2.0.txt
+  summary: 'Python bindings for HTCondor'
+  description: |
+    The HTCondor Python bindings aim to expose a high-quality,
+    Pythonic interface to the HTCondor client libraries. They utilize
+    the same C++ libraries as HTCondor itself, meaning they have
+    nearly the same behavior as the command line tools.
+  doc_url: https://htcondor.readthedocs.io/
+  dev_url: https://github.com/htcondor/htcondor
+
+extra:
+  recipe-maintainers:
+    - jasoncpatton
+
